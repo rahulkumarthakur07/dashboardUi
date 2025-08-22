@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import Dashboard from './pages/Dashboard'
+import Auth from './pages/Auth';
+import { AuthContext } from './context/AuthContext';
 
 const App = () => {
+   const {isLoggedIn } = useContext(AuthContext);
   return (
     <div className='flex-1 h-lvh items-center justify-center' >
-      <Dashboard/>
+     
+      {
+        isLoggedIn?<Dashboard/> :<Auth/>
+      }
+     
     </div>
   )
 }

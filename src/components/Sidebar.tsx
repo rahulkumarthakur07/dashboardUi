@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   HomeIcon as HomeOutline,
   UserIcon as UserOutline,
@@ -11,6 +11,8 @@ import {
   Cog6ToothIcon as CogSolid,
 } from "@heroicons/react/24/solid";
 import { CiLogout } from "react-icons/ci";
+import { AuthContext } from "../context/AuthContext";
+import Modal from "./Modal";
 type SidebarProps = {
   selected: string;
   onSelect: (name: string) => void;
@@ -35,17 +37,42 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
     },
   ];
 
+
+  const {  logout } = useContext(AuthContext);
+  const [isModalOpen, setModalOpen] = useState (false);
+
+ const handleLogoutClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleConfirmLogout = () => {
+    logout();
+    setModalOpen(false);
+  };
+
+  const handleCancelLogout = () => {
+    setModalOpen(false);
+  };
+
+
   return (
     <div className=" px-5 w-64 justify-between py-6 h-screen bg-white  flex flex-col">
+      <Modal
+        isOpen={isModalOpen}
+        title="Confirm Logout"
+        message="Do you really want to logout?"
+        onConfirm={handleConfirmLogout}
+        onCancel={handleCancelLogout}
+      />
       <div className="flex flex-col">
-        <div  className="flex mb-6 items-center flex-row">
+        <div  className="flex  mb-6 items-center flex-row">
           <img
-            className="h-14"
+            className="h-10 cursor-pointer "
             src={
               "https://upload.wikimedia.org/wikipedia/commons/d/db/Zeronet_logo.png"
             }
           />
-          <h1 className="text-2xl font-bold text-gray-700">SAAS</h1>
+          <h1 className="text-2xl cursor-pointer font-bold text-gray-700">SAAS</h1>
         </div>
         <div>
           {menuItems.map((item) => (
@@ -62,10 +89,10 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
         </div>
       </div>
 
-      <div className="flex px-4 py-3 bg-red-50 cursor-pointer hover:bg-red-100 transition-all hover:scale-102 rounded-xl items-center flex-row">
+      <button onClick={handleLogoutClick} className="flex px-4 py-3 bg-red-50 cursor-pointer hover:bg-red-100 transition-all hover:scale-102 rounded-xl items-center flex-row">
         <CiLogout color="red" />
         <h1 className="text-xl ml-3 text-red-400">Logout</h1>
-      </div>
+      </button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Home from "./Home";
-import Settings from "./Settings";
-import Users from "./Users";
+import Home from "./dashPages/Home";
+import Settings from "./dashPages/Settings";
+import Users from "./dashPages/Users";
 import Sidebar from "../components/Sidebar";
 import { GoBell } from "react-icons/go";
 const Dashboard = () => {
@@ -25,7 +25,7 @@ const Dashboard = () => {
       <Sidebar selected={selected} onSelect={setSelected} />
       <div className="flex-1 rounded-4xl m-2 overflow-y-auto  p-6 bg-gray-100 ">
         <div className="mb-6 rounded-full flex items-center justify-between px-10">
-          <h1 className="text-3xl font-bold">{selected}</h1>
+          <h1 className="text-3xl font-medium">{selected}</h1>
           <div className="bg-white px-4 py-2 w-60 rounded-full flex items-center justify-between shadow">
             {/* Bell with badge */}
             <div className=" rounded-full hover:bg-gray-300 transition-all duration-300 cursor-pointer p-1 relative">
