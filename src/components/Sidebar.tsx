@@ -4,7 +4,6 @@ import {
   UserIcon as UserOutline,
   Cog6ToothIcon as CogOutline,
 } from "@heroicons/react/24/outline";
-
 import {
   HomeIcon as HomeSolid,
   UserIcon as UserSolid,
@@ -13,10 +12,16 @@ import {
 import { CiLogout } from "react-icons/ci";
 import { AuthContext } from "../context/AuthContext";
 import Modal from "./Modal";
+import { PiStudent } from "react-icons/pi";
+import { PiChalkboardTeacher } from "react-icons/pi";
+import { SiGoogleclassroom } from "react-icons/si";
+import { LuClipboardList, LuClipboardPenLine } from "react-icons/lu";
+import { RiMoneyRupeeCircleLine } from "react-icons/ri";
 type SidebarProps = {
   selected: string;
   onSelect: (name: string) => void;
 };
+
 
 const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
   const menuItems = [
@@ -25,6 +30,37 @@ const Sidebar: React.FC<SidebarProps> = ({ selected, onSelect }) => {
       icon: <HomeOutline className="w-8 h-8 mr-2 text-black" />,
       activeIcon: <HomeSolid className="w-8 h-8 mr-2 text-purple-700" />,
     },
+    {
+      name: "Students",
+      icon: <PiStudent className="w-8 h-8 mr-2 text-black" />,
+      activeIcon: <PiStudent className="w-8 h-8 mr-2 text-purple-700" />,
+    },
+    {
+      name: "Teachers",
+      icon: <PiChalkboardTeacher className="w-8 h-8 mr-2 text-black" />,
+      activeIcon: <PiChalkboardTeacher className="w-8 h-8 mr-2 text-purple-700" />,
+    },
+    {
+      name: "Class",
+      icon: <SiGoogleclassroom className="w-8 h-8 mr-2 text-black" />,
+      activeIcon: <SiGoogleclassroom className="w-8 h-8 mr-2 text-purple-700" />,
+    },
+    {
+      name: "Attendance",
+      icon: <LuClipboardList className="w-8 h-8 mr-2 text-black" />,
+      activeIcon: <LuClipboardList  className="w-8 h-8 mr-2 text-purple-700" />,
+    },
+    {
+      name: "Exams",
+      icon: <LuClipboardPenLine className="w-8 h-8 mr-2 text-black" />,
+      activeIcon: <LuClipboardPenLine  className="w-8 h-8 mr-2 text-purple-700" />,
+    },
+    {
+      name: "Fees",
+      icon: <RiMoneyRupeeCircleLine className="w-8 h-8 mr-2 text-black" />,
+      activeIcon: <RiMoneyRupeeCircleLine className="w-8 h-8 mr-2 text-purple-700" />,
+    },
+    
     {
       name: "Users",
       icon: <UserOutline className="w-8 h-8 mr-2 text-black" />,

@@ -6,6 +6,7 @@ interface AuthContextType {
   user: User | null;
   isLoggedIn: boolean;
   logout: () => void;
+  setUser:(user:object) => void;
 }
 
 // Props for AuthProvider
@@ -18,6 +19,8 @@ export const AuthContext = createContext<AuthContextType>({
   user: null,
   isLoggedIn: false,
   logout: () => {},
+  setUser:() => {},
+  
 });
 
 // Provider component
@@ -44,7 +47,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoggedIn: !!user, logout }}>
+    <AuthContext.Provider value={{ setUser, user, isLoggedIn: !!user, logout }}>
       {children}
     </AuthContext.Provider>
   );

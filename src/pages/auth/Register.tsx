@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import colors from "../../constants/Colors";
 import { CiLock } from "react-icons/ci";
 import { IoIosLock } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import API from "../../api/axios";
+import { AuthContext } from "../../context/AuthContext";
 
 
 
@@ -20,7 +21,7 @@ const Register: React.FC<RegisterProps> = ({switchToLogin}) => {
   const [retypePassword, setRetypePassword] = useState("");
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
-
+  const {setUser} = useContext(AuthContext)
 
 const loginUser = async ()=>{
   try {
@@ -32,7 +33,7 @@ const loginUser = async ()=>{
     // Save token to localStorage
     localStorage.setItem("token", res.data.token);
     localStorage.setItem("user", JSON.stringify(res.data.user));
-    
+    setUser(res.data.user)
 console.log("logged in") // redirect
   } catch (err) {
     console.error(err.response?.data);

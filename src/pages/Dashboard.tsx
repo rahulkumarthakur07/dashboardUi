@@ -4,8 +4,18 @@ import Settings from "./dashPages/Settings";
 import Users from "./dashPages/Users";
 import Sidebar from "../components/Sidebar";
 import { GoBell } from "react-icons/go";
+import Students from "./dashPages/Students";
+import Class from "./dashPages/Class";
+import Teachers from "./dashPages/Teachers";
+import Fees from "./dashPages/Fees";
+import Exams from "./dashPages/Exams";
+import Attendance from "./dashPages/Attendance";
 const Dashboard = () => {
   const [selected, setSelected] = useState("Home");
+
+const user = localStorage.getItem('user')
+const userJSON = JSON.parse(user)
+
 
   const renderContent = () => {
     switch (selected) {
@@ -15,6 +25,18 @@ const Dashboard = () => {
         return <Users />;
       case "Settings":
         return <Settings />;
+      case "Students":
+        return <Students />;
+      case "Class":
+        return <Class />;
+      case "Teachers":
+        return <Teachers />;
+      case "Fees":
+        return <Fees />;
+      case "Exams":
+        return <Exams />;
+      case "Attendance":
+        return <Attendance/>;
       default:
         return null;
     }
@@ -41,10 +63,10 @@ const Dashboard = () => {
             <div className="border-l h-6 border-gray-300 mx-2"></div>
 
             {/* User Info */}
-            <h1 className="text-sm font-medium">John Brun</h1>
+            <h1 className="text-sm font-medium">{userJSON.name}</h1>
             <img
               className="rounded-full cursor-pointer hover:scale-105 transition-all duration-300 w-10 h-10 object-cover"
-              src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671122.jpg"
+              src={userJSON.profileImage}
               alt="Profile"
             />
           </div>

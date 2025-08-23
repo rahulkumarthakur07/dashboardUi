@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import colors from "../../constants/Colors";
 import { IoIosLock } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import API from "../../api/axios";
+import { AuthContext } from "../../context/AuthContext";
 
 
 
@@ -13,7 +14,7 @@ const Login: React.FC<LoginProps> = ({switchToRegister}) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+const {setUser} = useContext(AuthContext)
   const [errors, setErrors] = useState<string[]>([]);
 
 
@@ -28,7 +29,7 @@ const loginUser = async ()=>{
     // Save token to localStorage
     localStorage.setItem("token", res.data.token);
     localStorage.setItem("user", JSON.stringify(res.data.user));
-
+    setUser(res.data.user)
 console.log("logged in") // redirect
   } catch (err) {
     console.error(err.response?.data);
